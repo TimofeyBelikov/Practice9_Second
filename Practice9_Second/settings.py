@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-t90^dq%vf6!l5ujt2s)a$8*-(ef449_1u-s$cw8)jv-0iywgr9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['krakend','localhost','127.0.0.1','second-service']
+ALLOWED_HOSTS = ['krakend','localhost','127.0.0.1','second-service','first-service']
 
 
 # Application definition
