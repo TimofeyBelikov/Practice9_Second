@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('car/', CarAPIFull.as_view({"get":"list", 'post': 'create'})),
     path('boat/', BoatAPIFull.as_view({"get":"list", 'post': 'create'})),
+    path('__health/', HealthCheckView.as_view())
 ]
