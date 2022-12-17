@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 import django_opentracing
 from pathlib import Path
-
-from jaeger_client import Config
+import opentracing
+from jaeger_client import 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-t90^dq%vf6!l5ujt2s)a$8*-(ef449_1u-s$cw8)jv-0iywgr9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['krakend','localhost','127.0.0.1','second-service','first-service']
+ALLOWED_HOSTS = ['krakend','localhost','127.0.0.1','second-service','first-service','*']
 
 
 # Application definition
@@ -132,6 +132,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+import django_opentracing
 OPENTRACING_TRACE_ALL = True
 
 config = Config(
@@ -141,11 +143,12 @@ config = Config(
             'param': 1,
         },
         'local_agent': {
-            'reporting_host': 'jaeger'
+            'reporting_host': 'jaeger',
+            'reporting_port': '6831' 
         },
         'logging': True,
     },
-    service_name='django_service1',
+    service_name='second-service',
     validate=True,
 )
 # this call also sets opentracing.tracer
