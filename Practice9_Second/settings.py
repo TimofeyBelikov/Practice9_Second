@@ -141,8 +141,7 @@ config = Config(
             'param': 1,
         },
         'local_agent': {
-            'reporting_host': 'jaeger', #My k8s Service Cluster IP endpoint
-            'reporting_port': '6831',
+            'reporting_host': 'jaeger'
         },
         'logging': True,
     },
