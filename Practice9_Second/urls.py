@@ -20,6 +20,6 @@ from second.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('car/', CarAPIFull.as_view({"get":"list"})),
-    path('boat/', BoatAPIFull.as_view({"get":"list"})),
+    path('car/', CarAPIFull.as_view({"get":"list", 'post': 'create'})),
+    path('boat/', BoatAPIFull.as_view({"get":"list", 'post': 'create'})),
 ]
