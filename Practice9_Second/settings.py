@@ -10,7 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
+import django_opentracing
 from pathlib import Path
+
+from jaeger_client import Config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -49,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_opentracing.OpenTracingMiddleware'
 ]
 
 ROOT_URLCONF = 'Practice9_Second.urls'
@@ -127,3 +131,24 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+OPENTRACING_TRACE_ALL = True
+
+config = Config(
+    config={ # usually read from some yaml config
+        'sampler': {
+            'type': 'const',
+            'param': 1,
+        },
+        'local_agent': {
+            'reporting_host': 'jaeger', #My k8s Service Cluster IP endpoint
+            'reporting_port': '6831',
+        },
+        'logging': True,
+    },
+    service_name='django_service1',
+    validate=True,
+)
+# this call also sets opentracing.tracer
+tracer = config.initialize_tracer()
+OPENTRACING_TRACING = django_opentracing.DjangoTracing(tracer)
