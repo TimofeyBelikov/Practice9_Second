@@ -149,7 +149,7 @@ config = Config(
         'logging': True,
     },
     service_name='second-service',
-    validate=True,
+    validate=False,
 )
 # this call also sets opentracing.tracer
 tracer = config.initialize_tracer()
