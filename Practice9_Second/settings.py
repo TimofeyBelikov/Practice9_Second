@@ -28,6 +28,7 @@ STATICFILES_DIRS = (
     ("css", os.path.join(STATIC_ROOT, 'css')),
     ("images", os.path.join(STATIC_ROOT, 'images')),
     ("fonts", os.path.join(STATIC_ROOT, 'fonts')),
+)
 
 
 # Quick-start development settings - unsuitable for production
