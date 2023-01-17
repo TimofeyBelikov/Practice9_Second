@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build Docker Image
-        run: docker build . --file Dockerfile -t timofeybelikov/ma-status-service:latest
+        run: docker build . --file Dockerfile -t timofeybelikov/ma-status-service2:latest
         
       - name: Login to Docker Hub
         uses: docker/login-action@v1
@@ -18,4 +18,4 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
           
       - name: Push tag to Docker Hub
-        run: docker push timofeybelikov/ma-status-service:latest
+        run: docker push timofeybelikov/ma-status-service2:latest
